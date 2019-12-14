@@ -1,8 +1,7 @@
 """
  ________________
-|       By       |
-| Yozoh / PieBug |
-|    Maysue Lee  | 
+|Lee_M_Midterm.py|
+|   Maysue Lee   |
 |   10/29/2019   |
  ----------------
  
@@ -14,7 +13,9 @@
      folder, and opens either a .fbx or .obj file into
      a new maya scene. It then returns a text file within 
      the same folder, which contains information about 
-     non-manifold verticies or edges. 
+     non-manifold verticies or edges. It also gives you
+     the option to go in and fix the bad edges or vertices
+     yourself.
 //HOW TO USE://
 ---------------
      Open the tool and you'll be prompted with a window to 
@@ -24,7 +25,9 @@
      or FBX or OBJ and hit apply. A text file titled 
      "Non-Manifold_Information_Sheet.txt" will now be located 
      in the folder location. This text file contains information 
-     of the poly and it's non-manifold verts and edges. 
+     of the poly and it's non-manifold verts and edges.
+     There will be dynamically created buttons in the window, which
+     user can go in and select the bad verts or edges for fixing.
 """
 #Importing maya commands
 import maya.cmds as mc
@@ -41,7 +44,9 @@ import os
      1. fileExtension: Empty var to store file type user wants to examine. 
      2. currentWorkSpace: Obtains current set project workspace.
      3. pathTOAssets: Stores currentWorkSpace.
-     4. pathFolder: Global variable used to store the path file of user's desired folder. 
+     4. textS: Holds the text field for path directory.
+     5. holdMyEdges: Contains list of non-manifold edges.
+     6. holdMyVerts: Contains list of non-manifold verts.
 """
 
 global fileExtension
@@ -49,8 +54,6 @@ global currentWorkSpace
 currentWorkSpace = mc.workspace(fn=True)
 global pathTOAssets
 pathTOAssets = currentWorkSpace
-#global pathFolder
-#pathFolder = pathTOAssets
 global textS
 textS =  mc.textFieldGrp()
 global holdMyEdges 
@@ -263,7 +266,8 @@ def evaluateAssets(*args):
        (calls openWindowWS function) and textFieldGrp "Folder". Adding in text to display user's 
        set project path, and two radio buttons (calls changeToFBX and changeToOBJ) to get user's 
        input on Extension file choice. Lastly, is a button called "Apply", which grabs user's input 
-       and calls the evaluateAssets function.
+       and calls the evaluateAssets function. There's a scrollLayout for dynamic buttons created
+       later on. 
 """
 class myWindow(OptionsWindowBaseClass):
     def applyBtnCmd(self,*args):
