@@ -77,12 +77,15 @@ def LMee():
      1. changeToOBJ -> Outputs the value "fileExtension" will contain.
      2. changeToFBX -> Outputs the value "fileExtension" will contain.
      3. openWindowWS -> Outputs user's folder path into variable "pathFolder".
+     4. selectThis -> Outputs whether user is holding down shift or not into function findMod.
      
      //INPUTS://
      -----------
      1. importMesh <- Gets input from an list storing the file locations of the meshes.
      2. findFileExtension <- Gets input of directory path and Extension file type from user. 
      3. writeInfo <- Obtains a string containing information about the non-manifold of the meshes.
+     4. findMod <- Gets input of vert or edge position and if the player holds down Shift key.
+     5. selectThis <- Gets vert or edge position.
 
      //DESCRIPTION://
      ----------------
@@ -103,6 +106,8 @@ def LMee():
                         edges and verts with non-manifold faces. This information is stored within the local variable 
                         "info", creates a new text file called "Non-Manifold_Information_Sheet.txt", and sends info into 
                         writeFile function along with the information of verticies and edges.
+     9. findMod: Checking if shift is being held down and selecting the edge or vertices.
+     10. selectThis: Getting modifiers and passing information into findMod.
 """
 
 class OptionsWindowBaseClass(object):
